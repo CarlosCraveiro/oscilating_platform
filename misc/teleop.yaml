@@ -1,0 +1,64 @@
+/teleop:
+  ros__parameters:
+    frequency: 0
+    mode: "high_level" 
+    
+    cmd_rpy:
+      roll:
+        axis: 2
+        max: 30.0 # deg
+        deadband: 0.0
+      pitch:
+        axis: 3
+        max: 30.0 # deg
+        deadband: 0.0
+      yawrate:
+        axis: 0
+        max: 200.0 # deg/s
+        deadband: 5.0 # deg/s
+      thrust:
+        axis: 1
+        max: 60000.0 # PWM
+        deadband: 0.0
+        
+    cmd_vel_world:
+      x_velocity: # Pitch (Frente/Trás)
+        axis: 3
+        max: 0.5 # m/s
+        deadband: 0.1
+      y_velocity: # Roll (Esquerda/Direita)
+        axis: 2
+        max: 0.5 # m/s
+        deadband: 0.1
+      z_velocity: # Thrust (Sobe/Desce)
+        axis: 1
+        max: 0.5 # m/s
+        deadband: 0.1
+      yaw_velocity: # Yaw (Rotação)
+        axis: 0
+        max: 0.5 # rad/s
+        deadband: 0.1
+        
+      # Limites físicos da gaiola de voo
+      x_limit: [-1.0, 1.0] # m
+      y_limit: [-1.0, 1.0] # m
+      z_limit: [0.0, 2.5] # m
+      
+    initial_position:
+      x: 0.0
+      y: 0.0
+      z: 0.02
+      
+    auto_yaw_rate: 0.0 
+    
+    # --- Mapeamento de Botões ---
+    takeoff:
+      duration: 3.0
+      height: 1.0 # 30 cm
+      button: 10
+    land:
+      button: 9
+    emergency:
+      button: 4
+    arm:
+      button: 6

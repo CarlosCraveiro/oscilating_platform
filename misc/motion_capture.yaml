@@ -1,0 +1,17 @@
+/motion_capture_tracking:
+  ros__parameters:
+    type: "optitrack"
+    # ATENÇÃO: Coloque aqui o IP do computador Windows que está rodando o Motive (OptiTrack)
+    hostname: "192.168.7.3" 
+
+    topics:
+      frame_id: "mocap"
+      poses:
+        qos:
+          mode: "sensor"
+          deadline: 100.0 # Hz
+      tf:
+        child_frame_id: "{}_mocap"
+
+    # Como o Motive já está rastreando o corpo rígido "crazyflie", não precisamos 
+    # definir os marcadores aqui. O software envia o centro de massa direto.

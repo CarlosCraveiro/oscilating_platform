@@ -1,0 +1,66 @@
+fileversion: 3
+
+robots:
+  crazyflie:
+    enabled: true
+    uri: radio://0/80/2M/E7E7E7E7E7
+    initial_position: [0.0, 0.0, 0.0]
+    type: cf21
+
+robot_types:
+  cf21:
+    motion_capture:
+      enabled: true
+      tracking: "vendor" # Exige que o Pivot do Rigid Body seja alinhado no Motive
+      marker: default_single_marker
+      dynamics: default
+    big_quad: false
+    battery:
+      voltage_warning: 3.8
+      voltage_critical: 3.7
+
+all:
+  firmware_logging:
+    enabled: true
+    default_topics:
+      pose:
+        frequency: 10 # Hz
+      status:
+        frequency: 1 # Hz
+      odom:
+        frequency: 10 # Hz
+  
+    custom_topics:
+        range_finder_z:
+          frequency: 10 # Hz
+          vars: [ "range.zrange" ]
+        mpc_exec_timer:
+          frequency: 10 # Hz
+          vars: [ "ctrlMPC.exec_time" ]
+        motors:
+          frequency: 10 # Hz
+          vars:
+            - "motor.m1"
+            - "motor.m2"
+            - "motor.m3"
+            - "motor.m4"
+        
+  firmware_params:
+    deck:
+      disableZRanger: 1 # My custom flag
+    motion:
+      disable: 1 # Nonzero to not push flow measurements in the EKF
+    commander:
+      enHighLevel: 1
+    stabilizer:
+      estimator: 2 # 2: kalman (Obrigatório para fundir Mocap + IMU + Flow)
+      controller: 1 # 1: PID (Ideal para brushless + flowdeck) 6 é TinyMPC
+    
+    # --- FUSÃO SENSORIAL: MOCAP VS IMU ---
+    locSrv:
+      # Posição (X, Y, Z): Valor muito baixo. O EKF confia cegamente no Mocap.
+      extPosStdDev: 1e-3
+      # Orientação (Quaternion): Valor ALTO. O EKF ignora o Mocap e confia na IMU.
+      extQuatStdDev: 10.0 
+      
+  reference_frame: "mocap"
