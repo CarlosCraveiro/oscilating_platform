@@ -67,7 +67,7 @@ class PlatformEstimatorNode(Node):
         self.dt = 1.0 / self.freq_hz 
         self.N_predictions = 25     
         self.ar_order = 8
-        self.alpha_filter = 0.3  # Ajuste entre 0.1 (muito suave, mais atraso) e 0.9 (pouco suave, rápido)
+        self.alpha_filter = 0.2  # Ajuste entre 0.1 (muito suave, mais atraso) e 0.9 (pouco suave, rápido)
         self.filtered_z_plat = None
 
         # Frames (Ajuste para os nomes corretos do seu sistema Crazyswarm)
