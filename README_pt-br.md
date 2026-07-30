@@ -74,5 +74,7 @@ ros2 launch oscillating_platform launch.py
 * **Botão 1 (B/Círculo)**: Aborta ação e retorna o drone para a Origem (0.0, 0.0, 0.3m).
 * **Botão 2 (X/Quadrado)**: Rotina de aproximação (Sobe para 1m e vai para o X/Y da plataforma).
 * **Botão 3 (Y/Triângulo)**: Ativa/Desativa o "Surfe" (Compensação Feedforward baseada na previsão).
+* **Botão 12 (?/Seta para baixo)**: Inicia o Pouso Dinâmico. O drone desce gradualmente a 0.2 m/s enquanto continua compensando o movimento da onda, cortando os motores automaticamente após o tempo calculado de contato.
+
 
 ```

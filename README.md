@@ -78,3 +78,4 @@ ros2 launch oscillating_platform launch.py
 * **Button 1 (B/Circle)**: Aborts the current action and returns the drone to the Origin (0.0, 0.0, 0.3m).
 * **Button 2 (X/Square)**: Approach routine (Ascends to 1m and moves to the platform's X/Y).
 * **Button 3 (Y/Triangle)**: Toggles "Surfing" on/off (Feedforward compensation based on the prediction).
+* **Button 12(?/Arrow Down)**: Initiates Dynamic Landing (Time-to-Contact). The drone descends gradually (0.2 m/s) while continuously compensating for the platform's movement, automatically cutting the motors upon expected contact.
